@@ -1,0 +1,1005 @@
+<!DOCTYPE html><html lang="vi"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh - Thợ Sửa Xe &amp; Code Enthusiast</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&amp;family=Exo+2:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff6b35;
+            --accent-color: #ffd700;
+            --bg-dark: #0a0e27;
+            --bg-darker: #050816;
+            --bg-card: rgba(15, 23, 42, 0.8);
+            --text-primary: #e0e7ff;
+            --text-secondary: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-darker);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 5px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .hero-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            transition: all 0.4s ease;
+            animation: float-icon 3s infinite ease-in-out;
+        }
+
+        .hero-icon:nth-child(1) { animation-delay: 0s; }
+        .hero-icon:nth-child(2) { animation-delay: 0.3s; }
+        .hero-icon:nth-child(3) { animation-delay: 0.6s; }
+
+        .hero-icon:hover {
+            transform: translateY(-10px) scale(1.2);
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 20px var(--primary-color));
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spec-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spec-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .spec-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .spec-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .spec-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .spec-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--bg-dark);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .skill-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover i {
+            transform: rotateY(360deg);
+        }
+
+        .skill-item h4 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Dog Section */
+        .companion {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .companion-card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .companion-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(255, 215, 0, 0.1),
+                transparent 30%
+            );
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .companion-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .companion-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: wag 1s infinite ease-in-out;
+        }
+
+        @keyframes wag {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .companion-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .companion-card p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Looking For Section */
+        .looking-for {
+            background: var(--bg-darker);
+        }
+
+        .looking-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .looking-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .looking-card p {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--bg-darker);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .specs-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-icons {
+                gap: 1rem;
+            }
+
+            .hero-icon {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* Book Cover Image Styling */
+        .book-cover-image {
+            max-width: 100%;
+            height: 200px; /* Adjust height as needed */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border-radius: 10px; /* Slightly rounded corners */
+            margin-bottom: 1.5rem;
+            display: block; /* To allow margin-bottom */
+            margin-left: auto; /* Center the image if it's smaller than the container */
+            margin-right: auto;
+        }
+    </style>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">MINH</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Về tôi</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#companion">Đồng bọn</a></li>
+                <li><a href="#bookshelf">Tủ sách</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Chào các bạn nữ, mình là Minh đây!</h1>
+                <p class="hero-subtitle">"Bác sĩ" cho những "em xế hộp" &amp; Code Enthusiast</p>
+                <p class="hero-description">
+                    Ban ngày, mình là "bác sĩ" cho những "em xế hộp" khó tính. Tay mình có thể lấm lem dầu nhớt,
+                    nhưng đầu óc thì lại mê mẩn những dòng code sạch sẽ và logic vào ban đêm.
+                    Đúng vậy, mình là anh thợ sửa xe đang tập tành "gõ lệnh" để chinh phục thế giới số.
+                </p>
+                <div class="hero-icons">
+                    <i class="fas fa-car hero-icon" title="Thợ sửa xe"></i>
+                    <i class="fas fa-code hero-icon" title="Lập trình viên"></i>
+                    <i class="fas fa-dumbbell hero-icon" title="Gym lover"></i>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Vài "Thông Số Kỹ Thuật" Về Mình</h2>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <i class="fas fa-microchip spec-icon"></i>
+                    <h3>Hardware</h3>
+                    <p>
+                        Thân hình được "bảo dưỡng" định kỳ tại phòng gym. Đủ sức bê vác, lắp ráp đồ đạc
+                        và đặc biệt là có thể bế cún cưng đi dạo khắp nơi mà không than mệt.
+                    </p>
+                </div>
+
+                <div class="spec-card">
+                    <i class="fas fa-brain spec-icon"></i>
+                    <h3>Software</h3>
+                    <p>
+                        Tâm hồn đang được "nâng cấp" mỗi ngày bằng sách, những dòng code và vài trang viết lách ngẫu hứng.
+                        Mình có thể nói chuyện về động cơ V8, nhưng cũng có thể bàn về một thuật toán sắp xếp hay một cuốn tiểu thuyết hay.
+                    </p>
+                </div>
+
+                <div class="spec-card">
+                    <i class="fas fa-heart spec-icon"></i>
+                    <h3>"Đồng bọn" trung thành</h3>
+                    <p>
+                        Một chú chó siêu cấp đáng yêu, hiện đang giữ chức "Trưởng ban giám định bạn gái của chủ".
+                        Vượt qua vòng phỏng vấn của nó là một lợi thế lớn nhé!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Sở Thích &amp; Kỹ Năng</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fas fa-tools"></i>
+                    <h4>Sửa Chữa Ô Tô</h4>
+                    <p>Chuyên gia chăm sóc xế hộp</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Lập Trình</h4>
+                    <p>Đam mê code &amp; algorithms</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <h4>Gym &amp; Fitness</h4>
+                    <p>Bảo dưỡng "phần cứng"</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-book"></i>
+                    <h4>Đọc Sách</h4>
+                    <p>Nâng cấp kiến thức</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h4>Viết Lách</h4>
+                    <p>Viết lách ngẫu hứng</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-dog"></i>
+                    <h4>Yêu Động Vật</h4>
+                    <p>Chăm sóc cún cưng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companion Section -->
+    <section id="companion" class="companion">
+        <div class="container">
+            <h2 class="section-title">Đồng Bọn Trung Thành</h2>
+            <div class="companion-card">
+                <div class="companion-content">
+                    <div class="companion-icon">🐕</div>
+                    <h3>Trưởng Ban Giám Định</h3>
+                    <p>
+                        Một chú chó siêu cấp đáng yêu, hiện đang giữ chức vụ quan trọng:
+                        "Trưởng ban giám định bạn gái của chủ". Nó có quyền phủ quyết tuyệt đối!
+                        <br><br>
+                        <strong>Vượt qua vòng phỏng vấn của nó là một lợi thế LỚN nhé!</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Looking For Section -->
+    <section id="looking" class="looking-for">
+        <div class="container">
+            <h2 class="section-title">Mình Đang Tìm</h2>
+            <div class="looking-card">
+                <h3>Partner-in-Crime 💝</h3>
+                <p>
+                    Một "partner-in-crime" để cùng nhau "compile" một tương lai hạnh phúc.
+                    Một cô gái không ngại một anh chàng có thể vừa thay lốp xe cho bạn dưới mưa,
+                    vừa có thể ngồi hàng giờ nghe bạn kể chuyện, và đang nỗ lực "upgrade" bản thân mỗi ngày.
+                    <br><br>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bookshelf Section -->
+    <section id="bookshelf" class="about"> <!-- Reusing 'about' class for styling consistency -->
+        <div class="container">
+            <h2 class="section-title">Tủ Sách Của Tôi</h2>
+            <div class="specs-grid"> <!-- Reusing 'specs-grid' for layout -->
+                <div class="spec-card">
+                    <i class="fas fa-book-open spec-icon"></i> <!-- Using a book icon -->
+                    <h3>Kho Tàng Tri Thức</h3>
+                    <p>
+                        Đây là nơi mình lưu giữ những câu chuyện, kiến thức và nguồn cảm hứng đã đồng hành cùng mình.
+                        Mỗi cuốn sách là một cánh cửa mở ra thế giới mới, một bài học quý giá hoặc một người bạn tâm giao.
+                        Mình tin rằng, đọc sách không chỉ là giải trí mà còn là cách để "nâng cấp" bản thân mỗi ngày.
+                    </p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-lightbulb spec-icon"></i>
+                    <h3>Nguồn Cảm Hứng</h3>
+                    <p>
+                        Từ những trang sách về kỹ thuật, kinh doanh đến những câu chuyện đời thường,
+                        mỗi cuốn đều mang đến những góc nhìn mới, những ý tưởng sáng tạo và động lực để mình không ngừng học hỏi và phát triển.
+                    </p>
+                </div>
+                <div class="spec-card">
+                    <img src="./tram-nam-co-don.jpg" alt="Bìa sách Trăm năm cô đơn" class="book-cover-image">
+                    <h3>Trăm năm cô đơn</h3>
+                    <p>Một kiệt tác của Gabriel García Márquez, khám phá lịch sử huyền ảo của gia đình Buendía.</p>
+                </div>
+                <div class="spec-card">
+                    <img src="./thep-da-toi-the-day.jpg" alt="Bìa sách Thép đã tôi thế đấy" class="book-cover-image">
+                    <h3>Thép đã tôi thế đấy</h3>
+                    <p>Cuốn tiểu thuyết kinh điển của Nikolai Ostrovsky về ý chí và sự hy sinh trong cách mạng.</p>
+                </div>
+                <div class="spec-card">
+                    <img src="./chua-ruoi.jpg" alt="Bìa sách Chúa ruồi" class="book-cover-image">
+                    <h3>Chúa ruồi</h3>
+                    <p>Tác phẩm của William Golding, một câu chuyện ngụ ngôn đen tối về bản chất con người.</p>
+                </div>
+                <div class="spec-card">
+                    <img src="./lam-di.jpg" alt="Bìa sách Làm đĩ" class="book-cover-image">
+                    <h3>Làm đĩ</h3>
+                    <p>Cuốn tiểu thuyết gây tranh cãi của Vũ Trọng Phụng, phơi bày xã hội Việt Nam thời Pháp thuộc.</p>
+                </div>
+                <div class="spec-card">
+                    <img src="./tinh-yeu-thoi-tho-ta.jpg" alt="Bìa sách Tình yêu thời thổ tả" class="book-cover-image">
+                    <h3>Tình yêu thời thổ tả</h3>
+                    <p>Một câu chuyện tình yêu độc đáo và đầy cảm xúc của Gabriel García Márquez.</p>
+                </div>
+                <div class="spec-card">
+                    <img src="./hoang-tu-be.jpg" alt="Bìa sách Hoàng tử bé" class="book-cover-image">
+                    <h3>Hoàng tử bé</h3>
+                    <p>Tác phẩm triết lý sâu sắc của Antoine de Saint-Exupéry, dành cho mọi lứa tuổi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Sẵn sàng kết nối?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                    Hãy gửi tín hiệu cho mình nhé!
+                </p>
+                <button class="cta-button" onclick="showContactModal()">
+                    <span>Gửi Tín Hiệu <i class="fas fa-paper-plane"></i></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="color: var(--text-secondary);">
+            © 2024 Minh - Thợ Sửa Xe &amp; Code Enthusiast
+        </p>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 3rem; border-radius: 20px; max-width: 500px; width: 90%; border: 2px solid var(--primary-color); position: relative;">
+            <button onclick="closeContactModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-primary); font-size: 2rem; cursor: pointer; transition: all 0.3s ease;">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary-color); text-align: center;">
+                Gửi Tín Hiệu 💌
+            </h3>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+                Hãy để lại thông tin của bạn, mình sẽ liên hệ sớm nhất!
+            </p>
+            <form onsubmit="handleSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" placeholder="Tên của bạn" required="" style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: var(--text-primary); font-size: 16px; font-family: 'Exo 2', sans-serif;">
+                <input type="email" placeholder="Email của bạn" required="" style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: var(--text-primary); font-size: 16px; font-family: 'Exo 2', sans-serif;">
+                <textarea placeholder="Lời nhắn của bạn..." rows="4" required="" style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: var(--text-primary); font-size: 16px; font-family: 'Exo 2', sans-serif; resize: vertical;"></textarea>
+                <button type="submit" style="padding: 1rem; background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); border: none; border-radius: 10px; color: var(--bg-darker); font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Exo 2', sans-serif;">
+                    Gửi đi! <i class="fas fa-heart"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Contact Modal Functions
+        function showContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'flex';
+            modal.style.animation = 'fadeInUp 0.4s ease-out';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Create success message modal
+            const successModal = document.createElement('div');
+            successModal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10001; display: flex; align-items: center; justify-content: center;';
+            successModal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 3rem; border-radius: 20px; max-width: 400px; width: 90%; border: 2px solid #00d4ff; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; color: #00d4ff;">
+                        Cảm ơn bạn!
+                    </h3>
+                    <p style="color: #94a3b8; margin-bottom: 2rem;">
+                        Mình đã nhận được tín hiệu của bạn rồi! Sẽ liên hệ sớm nhất nhé 💝
+                    </p>
+                    <button onclick="this.closest('div').parentElement.remove()" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #00d4ff 0%, #ff6b35 100%); border: none; border-radius: 10px; color: #0a0e27; font-weight: 600; cursor: pointer; font-family: 'Exo 2', sans-serif; font-size: 1rem;">
+                        Đóng
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(successModal);
+            closeContactModal();
+
+            // Reset form
+            event.target.reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') {
+                closeContactModal();
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add keyframes for fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+
+</body></html>
