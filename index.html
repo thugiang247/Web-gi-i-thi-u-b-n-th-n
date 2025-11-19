@@ -631,6 +631,187 @@
             margin-left: auto; /* Center the image if it's smaller than the container */
             margin-right: auto;
         }
+
+        /* Chat Modal Specific Styles */
+        #chatModal .chat-message {
+            padding: 0.7rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        #chatModal .chat-message.user {
+            background: rgba(0, 212, 255, 0.1);
+            align-self: flex-end;
+        }
+
+        #chatModal .chat-message.bot {
+            background: rgba(255, 107, 53, 0.1);
+            align-self: flex-start;
+        }
+
+        #chatMessages {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            overflow-y: auto; /* Enable scrolling for messages */
+            flex-grow: 1; /* Allow messages to take available space */
+            padding-right: 5px; /* Space for scrollbar */
+        }
+
+        /* Chat Icon Styles */
+        .chat-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chat-icon button {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--bg-darker);
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .chat-icon button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Chat Modal Styles */
+        .chat-modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-modal-content {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            height: 70%; /* Adjust height as needed */
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .chat-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-close-button:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .chat-modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .chat-message {
+            padding: 0.7rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+        }
+
+        .chat-message.user {
+            background: rgba(0, 212, 255, 0.15);
+            align-self: flex-end;
+            color: var(--text-primary);
+        }
+
+        .chat-message.bot {
+            background: rgba(255, 107, 53, 0.15);
+            align-self: flex-start;
+            color: var(--text-primary);
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .chat-input-form input {
+            flex-grow: 1;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .chat-input-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .chat-send-button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            border-radius: 10px;
+            color: var(--bg-darker);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .chat-send-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
     </style>
 <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
 <body>
@@ -647,6 +828,7 @@
                 <li><a href="#companion">Đồng bọn</a></li>
                 <li><a href="#bookshelf">Tủ sách</a></li>
                 <li><a href="#contact">Liên hệ</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
             </ul>
         </div>
     </nav>
@@ -658,9 +840,9 @@
                 <h1 class="hero-title">Chào các bạn nữ, mình là Minh đây!</h1>
                 <p class="hero-subtitle">"Bác sĩ" cho những "em xế hộp" &amp; Code Enthusiast</p>
                 <p class="hero-description">
-                    Ban ngày, mình là "bác sĩ" cho những "em xế hộp" khó tính. Tay mình có thể lấm lem dầu nhớt,
-                    nhưng đầu óc thì lại mê mẩn những dòng code sạch sẽ và logic vào ban đêm.
-                    Đúng vậy, mình là anh thợ sửa xe đang tập tành "gõ lệnh" để chinh phục thế giới số.
+                    Thân ái chào thế giới! Mình là Minh, cầm tinh con khỉ.
+                    Nếu bạn đang hình dung về một Gen Z điển hình, thì có lẽ mình là phiên bản... lỗi. Thay vì lướt TikTok hàng giờ, mình thích lật từng trang sách. Thay vì chạy "bo" với crush, mình thích chạy deadline học code. Và thay vì đi "đu đưa" ở những nơi náo nhiệt, mình lại thích "đu" dưới gầm xe hơn.
+                    Để bạn hiểu rõ hơn về phiên bản "lỗi" này, mình xin phép được giới thiệu chi tiết hơn:
                 </p>
                 <div class="hero-icons">
                     <i class="fas fa-car hero-icon" title="Thợ sửa xe"></i>
@@ -679,33 +861,89 @@
         <div class="container">
             <h2 class="section-title">Vài "Thông Số Kỹ Thuật" Về Mình</h2>
             <div class="specs-grid">
-                <div class="spec-card">
-                    <i class="fas fa-microchip spec-icon"></i>
-                    <h3>Hardware</h3>
-                    <p>
-                        Thân hình được "bảo dưỡng" định kỳ tại phòng gym. Đủ sức bê vác, lắp ráp đồ đạc
-                        và đặc biệt là có thể bế cún cưng đi dạo khắp nơi mà không than mệt.
-                    </p>
-                </div>
-
-                <div class="spec-card">
-                    <i class="fas fa-brain spec-icon"></i>
-                    <h3>Software</h3>
-                    <p>
-                        Tâm hồn đang được "nâng cấp" mỗi ngày bằng sách, những dòng code và vài trang viết lách ngẫu hứng.
-                        Mình có thể nói chuyện về động cơ V8, nhưng cũng có thể bàn về một thuật toán sắp xếp hay một cuốn tiểu thuyết hay.
-                    </p>
-                </div>
-
-                <div class="spec-card">
-                    <i class="fas fa-heart spec-icon"></i>
-                    <h3>"Đồng bọn" trung thành</h3>
-                    <p>
-                        Một chú chó siêu cấp đáng yêu, hiện đang giữ chức "Trưởng ban giám định bạn gái của chủ".
-                        Vượt qua vòng phỏng vấn của nó là một lợi thế lớn nhé!
-                    </p>
-                </div>
             </div>
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-car spec-icon"></i>
+                        <h3>"Bác sĩ" xe hơi tập sự</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Hiện tại, thế giới của mình xoay quanh cờ lê, tua vít và những "bệnh án" của các loại xe hơi. Mình đang học nghề sửa chữa ô tô và thực sự đam mê việc biến những cỗ máy phức tạp trở nên hoàn hảo.
+                            Ưu điểm: Sau này xe bạn có vấn đề gì giữa đường, bạn biết phải gọi ai rồi đấy.
+                            Nhược điểm: Tay mình có thể không thơm mùi nước hoa, mà thơm mùi... dầu máy đặc trưng. Nhưng mình hứa là đã rửa rất kỹ trước khi đi hẹn hò!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-dumbbell spec-icon"></i>
+                        <h3>Gym - Nơi "bảo dưỡng" cơ thể</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Nếu sửa xe là "bảo dưỡng" cho máy móc, thì phòng gym là nơi mình "bảo dưỡng" cho chính bản thân. Đây là cách mình cân bằng lại sau những giờ làm việc tay chân.
+                            Mình không đặt mục tiêu thành Arnold Schwarzenegger đâu, chỉ là để có sức mà "vật lộn" với mấy con ốc cứng đầu và... tự mở mấy cái nắp chai cứng cổ thôi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-book-open spec-icon"></i>
+                        <h3>Đọc sách & Viết lách</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Đừng để mùi dầu máy đánh lừa bạn, tâm hồn mình thực ra được "bôi trơn" bằng tiểu thuyết và văn học. Mình có thể ngồi hàng giờ với một cuốn sách hay.
+                            Thỉnh thoảng, mình cũng tự "sản xuất" vài dòng chữ để sắp xếp lại mớ suy nghĩ hỗn độn trong đầu. Coi như là một cách "viết nhật ký" phiên bản người lớn.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-running spec-icon"></i>
+                        <h3>Chạy bộ</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Mình từng là một "chiến thần" trên đường chạy, đam mê cảm giác chinh phục những cây số.
+                            Nhưng sau vài mùa giải tự phong, mình đã quyết định "treo giày" để bảo toàn cặp đầu gối cho những chuyến đi sau này. Giờ mình chỉ chuyển sang chạy deadline và thỉnh thoảng... chạy trốn sự cô đơn thôi. Tuy nhiên, vào những dịp đặc biệt, mình vẫn xỏ giày đi chạy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-laptop-code spec-icon"></i>
+                        <h3>Học lập trình</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Dạo này mình còn đang tập tành viết code. Một sự kết hợp thú vị giữa logic của máy móc và sự sáng tạo của con chữ, dù đôi khi nó chỉ tạo ra lỗi... đỏ lè màn hình.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="spec-card collapsible-card">
+                    <div class="collapsible-header">
+                        <i class="fas fa-mug-hot spec-icon"></i>
+                        <h3>Nghi lễ thiêng liêng – Trà đá một mình</h3>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            Mình thích ngồi trà đá một mình, gọi một ly nhân trần không đường và một gói bim bim cay để nhâm nhi. Chỗ mình thường ngồi là một vị trí đắc địa, nơi có thể ngắm đài truyền hình cao chọc trời và các tay dân tổ đi đua.
+                        </p>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -748,24 +986,6 @@
         </div>
     </section>
 
-    <!-- Companion Section -->
-    <section id="companion" class="companion">
-        <div class="container">
-            <h2 class="section-title">Đồng Bọn Trung Thành</h2>
-            <div class="companion-card">
-                <div class="companion-content">
-                    <div class="companion-icon">🐕</div>
-                    <h3>Trưởng Ban Giám Định</h3>
-                    <p>
-                        Một chú chó siêu cấp đáng yêu, hiện đang giữ chức vụ quan trọng:
-                        "Trưởng ban giám định bạn gái của chủ". Nó có quyền phủ quyết tuyệt đối!
-                        <br><br>
-                        <strong>Vượt qua vòng phỏng vấn của nó là một lợi thế LỚN nhé!</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Looking For Section -->
     <section id="looking" class="looking-for">
@@ -774,10 +994,8 @@
             <div class="looking-card">
                 <h3>Partner-in-Crime 💝</h3>
                 <p>
-                    Một "partner-in-crime" để cùng nhau "compile" một tương lai hạnh phúc.
-                    Một cô gái không ngại một anh chàng có thể vừa thay lốp xe cho bạn dưới mưa,
-                    vừa có thể ngồi hàng giờ nghe bạn kể chuyện, và đang nỗ lực "upgrade" bản thân mỗi ngày.
-                    <br><br>
+                    Mình hiện đang trong trạng thái "độc thân vui vẻ" nhưng cũng không từ chối một bản "nâng cấp" có thêm người đồng hành. Mình không có checklist bạn gái lý tưởng, chỉ đơn giản là muốn tìm một người có thể cùng mình bàn về một cuốn tiểu thuyết hay, hoặc chỉ đơn giản là không chê tay mình dính dầu.
+                    Nếu bạn đọc đến đây mà vẫn thấy anh chàng "lỗi" này có chút thú vị, hãy bắt chuyện với mình bằng tên cuốn sách bạn tâm đắc nhất nhé. Biết đâu chúng ta lại hợp nhau từ cái tên thì sao?
             </div>
         </div>
     </section>
@@ -805,32 +1023,32 @@
                     </p>
                 </div>
                 <div class="spec-card">
-                    <img src="./tram-nam-co-don.jpg" alt="Bìa sách Trăm năm cô đơn" class="book-cover-image">
+                    <img src="./ảnh/tram-nam-co-don.JPG.jpg" alt="Bìa sách Trăm năm cô đơn" class="book-cover-image">
                     <h3>Trăm năm cô đơn</h3>
                     <p>Một kiệt tác của Gabriel García Márquez, khám phá lịch sử huyền ảo của gia đình Buendía.</p>
                 </div>
                 <div class="spec-card">
-                    <img src="./thep-da-toi-the-day.jpg" alt="Bìa sách Thép đã tôi thế đấy" class="book-cover-image">
+                    <img src="./ảnh/thep-da-toi-the-day.JPG.jpg" alt="Bìa sách Thép đã tôi thế đấy" class="book-cover-image">
                     <h3>Thép đã tôi thế đấy</h3>
                     <p>Cuốn tiểu thuyết kinh điển của Nikolai Ostrovsky về ý chí và sự hy sinh trong cách mạng.</p>
                 </div>
                 <div class="spec-card">
-                    <img src="./chua-ruoi.jpg" alt="Bìa sách Chúa ruồi" class="book-cover-image">
+                    <img src="./ảnh/chua-ruoi.JPG.jpg" alt="Bìa sách Chúa ruồi" class="book-cover-image">
                     <h3>Chúa ruồi</h3>
                     <p>Tác phẩm của William Golding, một câu chuyện ngụ ngôn đen tối về bản chất con người.</p>
                 </div>
                 <div class="spec-card">
-                    <img src="./lam-di.jpg" alt="Bìa sách Làm đĩ" class="book-cover-image">
+                    <img src="./ảnh/lam-di.JPG.jpg" alt="Bìa sách Làm đĩ" class="book-cover-image">
                     <h3>Làm đĩ</h3>
                     <p>Cuốn tiểu thuyết gây tranh cãi của Vũ Trọng Phụng, phơi bày xã hội Việt Nam thời Pháp thuộc.</p>
                 </div>
                 <div class="spec-card">
-                    <img src="./tinh-yeu-thoi-tho-ta.jpg" alt="Bìa sách Tình yêu thời thổ tả" class="book-cover-image">
+                    <img src="./ảnh/tinh-yeu-thoi-tho-ta.JPG.jpg" alt="Bìa sách Tình yêu thời thổ tả" class="book-cover-image">
                     <h3>Tình yêu thời thổ tả</h3>
                     <p>Một câu chuyện tình yêu độc đáo và đầy cảm xúc của Gabriel García Márquez.</p>
                 </div>
                 <div class="spec-card">
-                    <img src="./hoang-tu-be.jpg" alt="Bìa sách Hoàng tử bé" class="book-cover-image">
+                    <img src="./ảnh/hoang-tu-be.JPG.jpg" alt="Bìa sách Hoàng tử bé" class="book-cover-image">
                     <h3>Hoàng tử bé</h3>
                     <p>Tác phẩm triết lý sâu sắc của Antoine de Saint-Exupéry, dành cho mọi lứa tuổi.</p>
                 </div>
@@ -889,6 +1107,34 @@
         </div>
     </div>
 
+    <!-- Chat Icon -->
+    <div id="chat-icon" class="chat-icon">
+        <button onclick="showChatModal()">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-modal-content">
+            <button onclick="closeChatModal()" class="chat-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="chat-modal-title">
+                Trò chuyện với Minh 💬
+            </h3>
+            <div id="chatMessages" class="chat-messages">
+                <!-- Chat messages will be appended here -->
+            </div>
+            <form onsubmit="sendChatMessage(event)" class="chat-input-form">
+                <input type="text" id="chatInput" placeholder="Nhập tin nhắn của bạn..." required="">
+                <button type="submit" class="chat-send-button">
+                    Gửi <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -933,6 +1179,54 @@
                 modal.style.display = 'none';
             }, 300);
         }
+
+        // Chat Modal Functions
+        function showChatModal() {
+            const modal = document.getElementById('chatModal');
+            modal.style.display = 'flex';
+            modal.style.animation = 'fadeInUp 0.4s ease-out';
+        }
+
+        function closeChatModal() {
+            const modal = document.getElementById('chatModal');
+            modal.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function sendChatMessage(event) {
+            event.preventDefault();
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const message = chatInput.value.trim();
+
+            if (message) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', 'user');
+                messageElement.textContent = message;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+
+                chatInput.value = ''; // Clear input
+
+                // Simulate a response from Minh
+                setTimeout(() => {
+                    const botMessageElement = document.createElement('div');
+                    botMessageElement.classList.add('chat-message', 'bot');
+                    botMessageElement.textContent = 'Chào bạn! Minh sẽ trả lời bạn sớm nhất có thể.';
+                    chatMessages.appendChild(botMessageElement);
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                }, 1000);
+            }
+        }
+
+        // Close chat modal when clicking outside
+        document.getElementById('chatModal').addEventListener('click', (e) => {
+            if (e.target.id === 'chatModal') {
+                closeChatModal();
+            }
+        });
 
         // Handle form submission
         function handleSubmit(event) {

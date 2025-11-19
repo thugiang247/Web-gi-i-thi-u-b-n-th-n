@@ -42,6 +42,54 @@ function closeContactModal() {
     }, 300);
 }
 
+// Chat Modal Functions
+function showChatModal() {
+    const modal = document.getElementById('chatModal');
+    modal.style.display = 'flex';
+    modal.style.animation = 'fadeInUp 0.4s ease-out';
+}
+
+function closeChatModal() {
+    const modal = document.getElementById('chatModal');
+    modal.style.animation = 'fadeOut 0.3s ease-out';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+function sendChatMessage(event) {
+    event.preventDefault();
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const message = chatInput.value.trim();
+
+    if (message) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message', 'user');
+        messageElement.textContent = message;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+
+        chatInput.value = ''; // Clear input
+
+        // Simulate a response from Minh
+        setTimeout(() => {
+            const botMessageElement = document.createElement('div');
+            botMessageElement.classList.add('chat-message', 'bot');
+            botMessageElement.textContent = 'Chào bạn! Minh sẽ trả lời bạn sớm nhất có thể.';
+            chatMessages.appendChild(botMessageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+        }, 1000);
+    }
+}
+
+// Close chat modal when clicking outside
+document.getElementById('chatModal').addEventListener('click', (e) => {
+    if (e.target.id === 'chatModal') {
+        closeChatModal();
+    }
+});
+
 // Handle form submission
 function handleSubmit(event) {
     event.preventDefault();
@@ -89,5 +137,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 block: 'start'
             });
         }
+    });
+});
+
+// Add keyframes for fadeOut animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    }
+`;
+document.head.appendChild(style);
+// Collapsible functionality for spec-cards
+document.querySelectorAll('.collapsible-card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('active');
     });
 });
