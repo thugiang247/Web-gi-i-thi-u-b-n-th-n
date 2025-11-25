@@ -21,22 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function sendMessage() {
         const messageText = chatInput.value.trim();
         if (messageText !== '') {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', 'sent');
-            messageElement.innerHTML = `<p>${messageText}</p>`;
+            messageElement.innerHTML = `<p>${messageText}</p><span class="message-meta">${timeString}</span>`;
             chatBody.appendChild(messageElement);
             chatInput.value = '';
-            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+            scrollToBottom();
             
             // Optional: Simulate a response from "Minh"
             setTimeout(() => {
                 const responseElement = document.createElement('div');
                 responseElement.classList.add('message', 'received');
-                responseElement.innerHTML = `<p>Minh đã nhận được tin nhắn của bạn: "${messageText}"</p>`;
+                responseElement.innerHTML = `<p>Minh đã nhận được tin nhắn của bạn: "${messageText}"</p><span class="message-meta">${timeString}</span>`;
                 chatBody.appendChild(responseElement);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                scrollToBottom();
             }, 1000);
         }
+    }
+
+    function scrollToBottom() {
+        chatBody.scrollTop = chatBody.scrollHeight;
     }
 
     chatBubble.addEventListener('click', toggleChat);
