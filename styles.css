@@ -126,7 +126,7 @@ nav {
 }
 
 .hero-text h1 .subtitle {
-    font-size: 0.3em;
+    font-size: 0.6em; /* Increased size */
     color: var(--neon-cyan);
     text-transform: uppercase;
     letter-spacing: 10px;
@@ -259,7 +259,17 @@ nav {
 
 .icon-orbit:nth-child(3) {
     color: var(--neon-cyan);
-    animation-delay: -10s;
+    animation-delay: -6s; /* Adjusted delay for 5 icons */
+}
+
+.icon-orbit:nth-child(4) {
+    color: var(--neon-red); /* New color for the 4th icon */
+    animation-delay: -9s;
+}
+
+.icon-orbit:nth-child(5) {
+    color: var(--neon-yellow); /* New color for the 5th icon */
+    animation-delay: -12s;
 }
 
 @keyframes orbit {
