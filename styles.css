@@ -669,6 +669,7 @@ nav {
     color: #fff;
     margin-bottom: 2rem;
     position: relative;
+    text-align: justify;
 }
 
 .cta-highlight {
@@ -700,6 +701,20 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .hero-content {
+        gap: 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(3rem, 10vw, 8rem);
+    }
+
+    .hero-text .tagline {
+        font-size: 1.4rem;
+        padding-left: 1rem;
+        border-left: 2px solid var(--neon-red);
+    }
+
     .stats-grid {
         grid-template-columns: 1fr;
     }
@@ -708,12 +723,79 @@ nav {
         padding: 1rem;
     }
 
-    .info-card {
-        padding: 2rem 1.5rem;
+    .section-header h2 {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        letter-spacing: 5px;
+    }
+
+    .intro-card {
+        padding: 2rem;
+    }
+
+    .intro-card h3 {
+        font-size: 1.6rem;
+    }
+
+    .intro-card p {
+        font-size: 1.1rem;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .spec-card {
+        padding: 2rem;
+        min-height: auto;
+    }
+
+    .spec-card .icon-wrapper {
+        font-size: 3rem;
+    }
+
+    .spec-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .spec-card p {
+        font-size: 1rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
     }
 
     .gallery-item {
         aspect-ratio: 3/2;
+    }
+
+    .gallery-caption {
+        padding: 2rem 1rem 1rem;
+        transform: translateY(calc(100% - 50px));
+    }
+
+    .gallery-caption h3 {
+        font-size: 1.3rem;
+    }
+
+    .gallery-caption p {
+        font-size: 1rem;
+    }
+
+    .cta-box {
+        padding: 3rem 1.5rem;
+    }
+
+    .cta-box h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .cta-box p {
+        font-size: 1.2rem;
+    }
+
+    .cta-highlight {
+        font-size: 1.5rem;
     }
 
     nav {
@@ -734,6 +816,215 @@ nav {
     .chat-bubble {
         bottom: 20px;
         right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav {
+        padding: 1rem 3%;
+    }
+
+    .brand {
+        font-size: 1.1rem;
+    }
+
+    .wrench-icon {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        padding: 0 3%;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(2.5rem, 15vw, 6rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-text h1 .subtitle {
+        font-size: 0.25em;
+        letter-spacing: 5px;
+    }
+
+    .hero-text .tagline {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .stat-box {
+        padding: 0.8rem;
+    }
+
+    .stat-box i {
+        font-size: 2rem;
+    }
+
+    .stat-box .label {
+        font-size: 0.8rem;
+    }
+
+    .rotating-circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .icon-orbit {
+        font-size: 2.5rem;
+        animation: orbit 12s linear infinite;
+    }
+
+    .about, .gallery, .cta-section {
+        padding: 6rem 3%;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2rem, 10vw, 4rem);
+        letter-spacing: 5px;
+    }
+
+    .intro-card {
+        padding: 1.5rem;
+        border-left-width: 4px;
+    }
+
+    .intro-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .intro-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .specs-section {
+        margin-top: 3rem;
+    }
+
+    .specs-grid {
+        gap: 1.5rem;
+    }
+
+    .spec-card {
+        padding: 1.5rem;
+    }
+
+    .spec-card .icon-wrapper {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .spec-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .spec-card .label {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+    }
+
+    .spec-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .gallery-item {
+        border-width: 2px;
+    }
+
+    .gallery-caption {
+        padding: 1.5rem 1rem 0.8rem;
+        transform: translateY(calc(100% - 40px));
+    }
+
+    .gallery-caption h3 {
+        font-size: 1.1rem;
+    }
+
+    .gallery-caption p {
+        font-size: 0.9rem;
+    }
+
+    .badge {
+        top: 10px;
+        right: 10px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .cta-box {
+        padding: 2rem 1rem;
+        border-width: 2px;
+    }
+
+    .cta-box h2 {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-box p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-highlight {
+        font-size: 1.2rem;
+    }
+
+    .chat-container {
+        width: 95vw;
+        right: 2.5vw;
+        bottom: 80px;
+    }
+
+    .chat-header {
+        padding: 10px 15px;
+    }
+
+    .chat-header h3 {
+        font-size: 1rem;
+    }
+
+    .close-chat {
+        font-size: 1.5rem;
+    }
+
+    .chat-body {
+        padding: 15px;
+        font-size: 0.9rem;
+        gap: 8px;
+    }
+
+    .message {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .message-meta {
+        font-size: 0.7rem;
+    }
+
+    .chat-input {
+        padding: 10px 15px;
+    }
+
+    .chat-input input[type="text"] {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .chat-input button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
     }
 }
 
@@ -950,4 +1241,150 @@ nav {
     background-color: var(--rust-orange);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 0, 60, 0.4);
+}
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0, 255, 245, 0.05));
+    padding: 4rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--steel-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 8px,
+            rgba(0, 255, 245, 0.02) 8px,
+            rgba(0, 255, 245, 0.02) 16px
+        );
+    animation: contactGrid 15s linear infinite;
+    z-index: 0;
+}
+
+@keyframes contactGrid {
+    0% { background-position: 0 0; }
+    100% { background-position: 16px 16px; }
+}
+
+.contact-section .section-header {
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-section .section-header h2 {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 30px var(--neon-cyan);
+}
+
+.contact-info {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 255, 245, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info p {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--metal-silver);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    line-height: 1.5;
+}
+
+.contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info p i {
+    color: var(--neon-red);
+    font-size: 1.6rem;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-info p a {
+    color: var(--neon-yellow);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.contact-info p a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: var(--metal-silver);
+    opacity: 0.6;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 3rem 3%;
+    }
+
+    .contact-info {
+        padding: 1.5rem;
+    }
+
+    .contact-info p {
+        font-size: 1.1rem;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .contact-info p i {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    .contact-info p a {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 2rem 3%;
+    }
+
+    .contact-info {
+        padding: 1rem;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+    }
+
+    .contact-info p i {
+        font-size: 1.2rem;
+    }
+
+    .footer-text {
+        font-size: 0.8rem;
+    }
 }
