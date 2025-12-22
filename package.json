@@ -1,0 +1,57 @@
+{
+  "name": "poe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "set-value": "^2.0.1",
+    "setprototypeof": "^1.2.0",
+    "snapdragon": "^0.8.2",
+    "snapdragon-node": "^2.1.1",
+    "snapdragon-util": "^3.0.1",
+    "source-map": "^0.5.7",
+    "source-map-resolve": "^0.5.3",
+    "source-map-url": "^0.4.1",
+    "split": "^0.3.3",
+    "split-string": "^3.1.0",
+    "static-extend": "^0.1.2",
+    "statuses": "^1.5.0",
+    "stream-combiner": "^0.0.4",
+    "string_decoder": "^1.1.1",
+    "through": "^2.3.8",
+    "to-object-path": "^0.3.0",
+    "to-regex": "^3.0.2",
+    "to-regex-range": "^2.1.1",
+    "toidentifier": "^1.0.1",
+    "union-value": "^1.0.1",
+    "unix-crypt-td-js": "^1.1.4",
+    "unpipe": "^1.0.0",
+    "unset-value": "^1.0.0",
+    "upath": "^1.2.0",
+    "urix": "^0.1.0",
+    "use": "^3.1.1",
+    "util-deprecate": "^1.0.2",
+    "utils-merge": "^1.0.1",
+    "uuid": "^3.4.0",
+    "vary": "^1.1.2",
+    "websocket-driver": "^0.7.4",
+    "websocket-extensions": "^0.1.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thugiang247/Web-gi-i-thi-u-b-n-th-n.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thugiang247/Web-gi-i-thi-u-b-n-th-n/issues"
+  },
+  "homepage": "https://github.com/thugiang247/Web-gi-i-thi-u-b-n-th-n#readme"
+}
